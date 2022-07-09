@@ -10,8 +10,11 @@
 </head>
 
 <body>
+
     <h1>Kodokutter 2</h1>
-    <p>{{ $name }}</p>
+    @foreach ($tweets as $tweet)
+        <p>{{ $tweet->content }}</p>
+    @endforeach
 </body>
 
 </html>
