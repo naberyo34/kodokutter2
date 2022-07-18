@@ -22,4 +22,8 @@ Route::get('/sample', [\App\Http\Controllers\Sample\IndexController::class, 'sho
 Route::get('/sample/{id}', [\App\Http\Controllers\Sample\IndexController::class, 'showId']);
 
 // シングルアクションコントローラを呼び出す場合は、メソッド名を指定しなくてよい
-Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class);
+// ->name は別名を付けて呼ぶのを簡略化している
+Route::get('/tweet', \App\Http\Controllers\Tweet\IndexController::class)
+    ->name('tweet.index');
+Route::post('/tweet/create', \App\Http\Controllers\Tweet\CreateController::class)
+    ->name('tweet.create');

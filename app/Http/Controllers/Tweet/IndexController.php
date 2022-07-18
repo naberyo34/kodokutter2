@@ -16,7 +16,8 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $tweets = Tweet::all();
+        // やってることはSQLと同じ
+        $tweets = Tweet::orderBy('created_at', 'DESC')->get();
         // dd はLaravel専用の開発向けヘルパー関数で、処理を途中で止めて変数の値をブラウザに表示してくれる
         // dd($tweets);
 
