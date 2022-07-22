@@ -87,3 +87,19 @@ artisanでマイグレーションファイルを作ればよい。`up()`は追�
 EloquentはORMとしての機能を持っており、たとえばUserとTweetの関連付けをModelsファイルから行うことができる。
 
 今回の場合、Userは多数のTweetを持つことができ、Tweetは必ず単一のUserに所属する。
+
+## フロントエンド実装
+
+Sail環境にはデフォルトでViteが入っている（モダン！）。
+
+Bladeはテンプレートエンジンとしてのファイル分割機能を当然持っているが、`views/components/hoge/fuga.blade.php`は
+
+```php
+<x-hoge.fuga>
+    ...
+</x-hoge.fuga>
+```
+
+で呼び出せるようになっている。このとき、テンプレートに書いた`@slot`の位置にタグの中に入れた要素が展開される（JSXのchildrenっぽい挙動）。
+
+これ以外にもpropsをコンポーネントに渡せるなどちょっとReactっぽい思想でBladeのコードを書くことができる。
