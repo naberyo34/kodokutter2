@@ -20,6 +20,7 @@ class CreateController extends Controller
         // データベース操作に関する処理
         $tweet = new Tweet;
         // リクエストからデータを取得する
+        $tweet->user_id = $request->userId();
         $tweet->content = $request->tweet();
         // データベースに保存する
         $tweet->save();

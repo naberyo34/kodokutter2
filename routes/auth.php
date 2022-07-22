@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
+// guest エイリアスのミドルウェアは「ログインしている場合は問答無用でhomeに飛ばす」という処理を担う
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('register');
@@ -34,6 +35,7 @@ Route::middleware('guest')->group(function () {
                 ->name('password.update');
 });
 
+// 逆に auth ミドルウェアは「ログインしていない場合問答無用でログイン画面に飛ばす」という処理をしている
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', [EmailVerificationPromptController::class, '__invoke'])
                 ->name('verification.notice');

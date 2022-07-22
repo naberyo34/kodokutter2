@@ -33,4 +33,11 @@ class CreateRequest extends FormRequest
             'tweet' => 'required|max:140'
         ];
     }
+
+    // 現在ログインしているユーザーのIDを取得する
+    // ここで取得したIDをツイートの保存時に使う
+    public function userId(): int
+    {
+        return $this->user()->id;
+    }
 }
