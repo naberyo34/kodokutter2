@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Tweet;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tweet;
+use App\Services\TweetService;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -14,10 +14,11 @@ class IndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, TweetService $tweetService)
     {
-        // やってることはSQLと同じ
-        $tweets = Tweet::orderBy('created_at', 'DESC')->get();
+        // TweetService はTweetモデルに依存する処理を切り出したもの
+        // コントローラー自体のロジックとは独立させ、外部から受け取る(サービスコンテナによるDI)
+        $tweets = $tweetService->getTweets();
         // dd はLaravel専用の開発向けヘルパー関数で、処理を途中で止めて変数の値をブラウザに表示してくれる
         // dd($tweets);
 

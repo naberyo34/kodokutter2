@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/sample', [\App\Http\Controllers\Sample\IndexController::class, 'show']);
-
 Route::get('/sample/{id}', [\App\Http\Controllers\Sample\IndexController::class, 'showId']);
 
 // シングルアクションコントローラを呼び出す場合は、メソッド名を指定しなくてよい
@@ -33,3 +32,10 @@ Route::get('/tweet/update/{tweetId}', \App\Http\Controllers\Tweet\Update\IndexCo
 // 今回の場合、つぶやきの編集リクエストは何度送っても同じ結果となるため、PUTとしている
 Route::put('/tweet/update/{tweetId}', \App\Http\Controllers\Tweet\Update\PutController::class)->name('tweet.update.put')->where('tweetId', '[0-9]+');
 Route::delete('/tweet/delete/{tweetId}', \App\Http\Controllers\Tweet\DeleteController::class)->name('tweet.delete');
+
+// Auth
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
